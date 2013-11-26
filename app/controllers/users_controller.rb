@@ -29,6 +29,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+
+    new_params = user_params
+    if new_params[:password].blank?
+      new_params.delete(:password)
+      new_params.delete(:password_confirmation)
+    end
+
     if @user.update new_params
         redirect_to user_path(@user), notice: 'User was successfully added.' 
     else
