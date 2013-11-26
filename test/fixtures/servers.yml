@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  server_name: MyString
+  vendor: MyString
+  processor: MyString
+  memory: MyString
+
+two:
+  server_name: MyString
+  vendor: MyString
+  processor: MyString
+  memory: MyString

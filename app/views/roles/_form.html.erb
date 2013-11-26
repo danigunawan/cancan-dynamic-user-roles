@@ -1,0 +1,33 @@
+<%= form_for(@role) do |f| %>
+  <% if @role.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>
+
+      <ul>
+      <% @role.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <label class="control-label">Role Name</label>
+    <div class="controls">
+      <%= f.text_field :role_name, :type=>"text", :class=>'input' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Permissions</label>
+      <% Permission.all.each do |permission| %>
+          <div class="controls">
+            <%= check_box_tag "role[permission_ids][]", permission.id, @role.permissions.include?(permission) %>
+            <%= "Can #{permission.subject_action} #{permission.subject_class}" %>
+          </div>
+      <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
